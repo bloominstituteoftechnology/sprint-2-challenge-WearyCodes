@@ -73,8 +73,30 @@
     // ❗ Debug properly using the Console
 
     // 👉 CHALLENGE 1
-    function profileActivation() {
-      // 🧠 profileActivation takes two arguments, profile and reason, which are an object and a string respectively
+    function profileActivation(profile, reason) {
+if (profile.active === undefined){
+  return 'impossible to ascertain status';
+}
+if (profile.active === false){
+} else if(profile.active === true && profile.reason !== undefined){
+  return 'confirm status manually';
+}
+if (profile.active === true){
+  profile.active = false;
+  profile.reason = reason
+  let returner = profile
+  return returner
+}
+if (profile.reason === undefined){
+return 'confirm status manually';}
+else {
+  profile.active = true;
+  delete profile.reason;
+  return profile;
+}}
+
+  
+  // 🧠 profileActivation takes two arguments, profile and reason, which are an object and a string respectively
       //  The reason arg is only used -and therefore required- to deactivate profiles, not to activate them
       //  The profile arg has an `active` property holding a Boolean value
       //    * If profile is active, profileActivation deactivates it and writes a `reason` prop holding the reason
@@ -85,10 +107,10 @@
       //    * If the profile is active but it has a `reason` prop, return the string "confirm status manually"
       //    * If the profile is **missing** an `active` prop, return the string "impossible to ascertain status"
       // 🌟 HINT: to confirm the existence of a prop, check that its value is not undefined
-    }
+    
 
     // 👉 CHALLENGE 2
-    function mineSweeper() {
+    function mineSweeper(grid, x, y) {
       // 🧠 mineSweeper takes a grid as its first argument, and coordinates x and y as the second and third args
       //  The grid is an array of arrays in the following format: [["🟥","🟦","🟥"],["🟦","🟥","🟥"],["🟥","🟦","🟦"]]
       //  Each subarray is a row of the grid, the first subarray being the top row:
@@ -106,10 +128,19 @@
       //    * If the player lands on blue, return the string "🟦 🥳"
       // 🧠 Edge cases:
       //    * If the x or y coordinates are under 1 or over 3, return the string "invalid coordinates"
-    }
+if ((x < 1 || x > 3) || (y < 1 || y > 3)){
+return 'invalid coordinates'}
+let spot = grid[y-1][x-1]
+if (spot === '🟥'){
+  return '🟥 💀'
+} else if (spot === '🟦'){
+  return '🟦 🥳'
+}
 
+        // board[x][y] = 0
+    }
     // 👉 CHALLENGE 3
-    function booleanize() {
+    function booleanize(obj) {
       // 🧠 booleanize takes an object as its single argument, which can have any number of properties
       // Loop over the properties and then return the object, after applying the following transformations:
       //    * If a value is the number zero, it must be transformed into the Boolean false
@@ -118,10 +149,32 @@
       // 🧠 Edge cases:
       //    * If a property name exceeds 9 characters, return the string "shorten all prop names to 9 chars or less"
       // 🌟 HINT: careful not to perform any unintended changes on the object
-    }
+      for (let roo in obj){
+        let woo = obj[roo]
+      if(woo === 0){
+        obj[roo] = false
+      }
+      if (roo !== null && roo.length >= 9){
+return 'shorten all prop names to 9 chars or less'
+      }
+      if(woo === 1){
+        obj[roo] = true
+      }
+else if (woo === null){
+  delete obj[roo]
+  
+}
+        else if (woo === null){
+          delete woo
+          return obj
+        console.log(woo)
+        }
+    }return obj
+  }
 
     // 👉 CHALLENGE 4
-    function scrub() {
+    function scrub(txt, arr) {
+
       // 🧠 scrub takes a string "text" as its first argument, and an array of forbidden words "forbidden" as its second
       // Any word in the text included in the array of forbidden words is replaced with a word of equal length but made of lowcase "x"
       // The scrubbed text is then returned from the function, as seen in the examples below
@@ -133,10 +186,27 @@
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
       //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
+      let result = []
+      let split = txt.split(' ')
+      for (let wrd of split){
+if (arr.indexOf(wrd) === -1){
+  result.push(wrd)
+}
+else { 
+  let myexes = ''
+  for (let letter of wrd){
+  myexes += 'x'
+}
+result.push(myexes);
+}
+}
+let transformed = result.join(' ')
+return transformed
     }
 
     // 👉 CHALLENGE 5
-    function normalizePhoneNumber() {
+    function normalizePhoneNumber(str) {
+    
       // 🧠 normalizePhoneNumber takes a string as its only argument, representing a ten-digit number
       // The function returns a string formatted as seen below
       // 🧠 Examples of usage:
@@ -148,17 +218,42 @@
       // 🌟 HINT: instead of looping over the number's digits, loop backwards over a template "(XXX) XXX-XXXX"
       // 🌟 HINT: at each iteration, if the current character is an "X", replace it with the result of popping a digit from the number
       // 🌟 HINT: if you'd rather loop forwards, use `shift` instead of `pop`
-    }
+if (str.length > 10 || str.length < 10){
+  return 'type a 10-digit number';
+}
+for (i in str)
+{if (str.indexOf('x') !== -1){
+        return 'invalid phone number';}
+        if (str.length === 10){
+  return `(${str.slice(0,3)}) ${str.slice(3, 6)}-${str.slice(6, 10)}`}
+      }
+  
+      
 
-    // 👉 CHALLENGE 6 (bonus, NOT graded)
+   
+}
+  // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
+
+// while(true){
+//   Math.random() * 6
+//   let sixes = 666
+//   let count = rolls.length
+//   let result = Math.random() * 6
+//   if (result === sixes){
+//     return result + count
+//     break
+//   } else{Math.random() * 6}
+// }
+        
+      }
       // 🧠 diceRolls takes no arguments and returns a number
       // The function throws a six-sided dice until 3 sixes in a row are obtained
       // The number of throws it took to obtain that third-in-a-row six is then returned from the function
       // 🌟 HINT: research using `Math.random` to obtain a number from 1 to 6
       // 🌟 HINT: use `while(true)` to throw the dice indefinitely, but avoid an infinite loop by making sure to break out eventually
       // 🌟 HINT: you need to keep track of the total number of throws, as well as how many sixes in a row
-    }
+    
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
